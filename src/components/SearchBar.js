@@ -12,7 +12,7 @@ export default () => {
           </span>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="basic-url"
             aria-describedby="basic-addon3 basic-addon4"
           />
