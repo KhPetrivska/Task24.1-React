@@ -1,14 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import Content from "./components/Content";
+import Footer from "./components/Footer.js";
 
-export default () => {
+const App = () => {
+  const [apikey, setApikey] = useState('people/1');
+
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>SWAPI</h1>
-      <SearchBar />
-      <Content />
+      <SearchBar apikey={apikey} setApikey={setApikey} />
+      <Content apikey={apikey} />
+      <Footer/>
     </div>
   );
 };
+
+export default App;

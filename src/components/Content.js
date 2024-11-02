@@ -1,17 +1,21 @@
 import React from "react";
-//import ReactDOM from "react-dom/client";
+import { useSelector } from "react-redux";
 import "./contentStyles.css";
 
-export default () => {
+export default function Content({ apikey }) {
+  const { loading, data, error } = useSelector((state) => state.dataState);
+
+  if (loading) return <p className="infotext">Loading...</p>;
+  if (error) return <p className="infotext">Error: {error}</p>;
+  if (!data || Object.keys(data).length === 0)
+    return <p className="infotext">No data available</p>;
+
   return (
-    <>
-      <div className="container mt-3 form-control">
-        <div>
-          <span className="content-badge badge text-bg-primary">People</span>
-          <span className="content-badge badge text-bg-primary">1</span>
-        </div>
-        <span className="content-text">"name": "Luke Skywalker",</span>
+    <div className="container mt-3 form-control">
+      <div>
+        <span className="content-badge badge text-bg-primary">{apikey}</span>
       </div>
-    </>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
   );
-};
+}
